@@ -30,7 +30,7 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.strategy = :truncation, { :except => %w[public.schema_migrations]}
     DatabaseCleaner.clean_with(:truncation)
   end
 
